@@ -12,3 +12,4 @@ public class Product {
     private String image;
     private Category category;
 }
+

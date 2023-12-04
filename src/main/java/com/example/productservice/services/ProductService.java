@@ -1,15 +1,19 @@
 package com.example.productservice.services;
 
+import com.example.productservice.dtos.FakeStoreProductDto;
+import com.example.productservice.dtos.GenericProductDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public interface ProductService {
-     String getProductById(long id);
+     GenericProductDto getProductById(long id);
 
-     void getAllProduct();
+     List<GenericProductDto> getAllProduct();
 
-     void deleteProductById(long id);
+     GenericProductDto deleteProductById(long id);
 
-     void createProduct();
+     GenericProductDto createProduct(GenericProductDto genericProductDto);
 
-     void updateProductById( long id);
+     GenericProductDto updateProductById( long id);
 }
