@@ -3,7 +3,6 @@ package com.example.productservice.dtos;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
 @Getter

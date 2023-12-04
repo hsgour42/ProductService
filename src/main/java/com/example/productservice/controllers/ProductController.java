@@ -1,15 +1,11 @@
 package com.example.productservice.controllers;
 
 
-import com.example.productservice.dtos.ExceptionDto;
-import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
-import com.example.productservice.services.FakeStoreProductServiceImpl;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

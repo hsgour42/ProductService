@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class ProductControllerAdvices {
 
     @ExceptionHandler(ProductNotFoundException.class)
+    //@ResponseStatus(HttpStatus.NOT_FOUND)
+    //@ResponseBody()
     private ResponseEntity<ExceptionDto> handleProductNotFoundException(
             ProductNotFoundException productNotFoundException
     ){
