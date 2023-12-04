@@ -1,12 +1,15 @@
 package com.example.productservice.controllers;
 
 
+import com.example.productservice.dtos.ExceptionDto;
 import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.services.FakeStoreProductServiceImpl;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class ProductController {
 
     //localhost:8080/products/123
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") long id) {
+    public GenericProductDto getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
 
         return productService.getProductById(id);
     }
@@ -47,6 +50,21 @@ public class ProductController {
 
     @PatchMapping("/{id}")
     public GenericProductDto updateProductById(@PathVariable("id") long id,@RequestBody GenericProductDto genericProductDto){
-        return productService.updateProductById(id);
+        return productService.updateProductById(id,genericProductDto);
     };
+
+    //if we have 5 type of exception we will end up with five type of method
+    //so we introduce @ControllerAdvice
+
+//    @ExceptionHandler(ProductNotFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    private ExceptionDto handleProductNotFoundException(ProductNotFoundException productNotFoundException){
+//           ExceptionDto exceptionDto = ExceptionDto.
+//                builder().
+//                message(productNotFoundException.getMessage()).
+//                httpStatus(HttpStatus.NOT_FOUND).
+//                build();
+//           return exceptionDto;
+//    }
+
 }

@@ -2,17 +2,21 @@ package com.example.productservice.services;
 
 import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service("fakeStoreProductServiceImpl") //define the name for further use like use in controller
@@ -30,12 +34,17 @@ public class FakeStoreProductServiceImpl implements ProductService{
         this.restTemplateBuilder = restTemplateBuilder;
     }
     @Override
-    public GenericProductDto getProductById(long id) {
+    public GenericProductDto getProductById(long id) throws ProductNotFoundException {
         //RestTemplate --for calling api
         RestTemplate template = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> responseEntity =
           template.getForEntity(specificProductUrl, FakeStoreProductDto.class, id);
 
+        FakeStoreProductDto fakeStoreProductDto = responseEntity.getBody();
+
+        if(fakeStoreProductDto == null){
+            throw new ProductNotFoundException("Product with id : " + id + " doesn't exist");
+        }
         //convert FakeStoreProductDto to GenericProductDto before returning
         GenericProductDto genericProductDto = convertToGenericProductDto(responseEntity.getBody());
 
@@ -91,9 +100,20 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public GenericProductDto updateProductById(long id) {
-        RestTemplate template = restTemplateBuilder.build();
+    public GenericProductDto updateProductById(long id, GenericProductDto genericProductDto) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
 
-        return null;
+        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor =
+                restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+
+        RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto);
+        ResponseEntity<FakeStoreProductDto> responseEntity =
+                restTemplate.execute(specificProductUrl, HttpMethod.PUT, requestCallback, responseExtractor, id);
+
+        return convertToGenericProductDto(responseEntity.getBody());
     }
+
+
+
+
 }
