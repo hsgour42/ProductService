@@ -3,33 +3,35 @@ package com.example.productservice.services;
 import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
-import com.example.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClientAdapter;
+import com.example.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Primary  //Default set for service if more then one bean is available as well as @Qualifier override the @Primary
 @Service("fakeStoreProductServiceImpl") //define the name for further use like use in controller
 public class FakeStoreProductServiceImpl implements ProductService{
 
-    private final FakeStoreClientAdapter fakeStoreClientAdapter;
+    private final FakeStoreClient fakeStoreClient;
 
     @Autowired
-    FakeStoreProductServiceImpl(FakeStoreClientAdapter fakeStoreClientAdapter){
-        this.fakeStoreClientAdapter = fakeStoreClientAdapter;
+    FakeStoreProductServiceImpl(FakeStoreClient fakeStoreClient){
+        this.fakeStoreClient = fakeStoreClient;
     }
 
     @Override
     public GenericProductDto getProductById(long id) throws ProductNotFoundException {
         //RestTemplate --for calling api
-        FakeStoreProductDto fakeStoreProductDto = fakeStoreClientAdapter.getProductById(id);
+        FakeStoreProductDto fakeStoreProductDto = fakeStoreClient.getProductById(id);
         return convertToGenericProductDto(fakeStoreProductDto);
     }
 
     @Override
     public List<GenericProductDto> getAllProduct() {
-        List<FakeStoreProductDto> fakeStoreProductDtos = fakeStoreClientAdapter.getAllProduct();
+        List<FakeStoreProductDto> fakeStoreProductDtos = fakeStoreClient.getAllProduct();
         List<GenericProductDto> result = new ArrayList<>();
         for(FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos ){
             result.add(convertToGenericProductDto(fakeStoreProductDto));
@@ -39,19 +41,19 @@ public class FakeStoreProductServiceImpl implements ProductService{
 
     @Override
     public GenericProductDto deleteProductById(long id) {
-        FakeStoreProductDto fakeStoreProductDto =  fakeStoreClientAdapter.deleteProductById(id);
+        FakeStoreProductDto fakeStoreProductDto =  fakeStoreClient.deleteProductById(id);
         return convertToGenericProductDto(fakeStoreProductDto);
     }
 
     @Override
     public GenericProductDto createProduct(GenericProductDto genericProductDto) {
-        FakeStoreProductDto fakeStoreProductDto = fakeStoreClientAdapter.createProduct(genericProductDto);
+        FakeStoreProductDto fakeStoreProductDto = fakeStoreClient.createProduct(genericProductDto);
         return convertToGenericProductDto(fakeStoreProductDto);
     }
 
     @Override
     public GenericProductDto updateProductById(long id, GenericProductDto genericProductDto) {
-        FakeStoreProductDto fakeStoreProductDto = fakeStoreClientAdapter.updateProductById(id,genericProductDto);
+        FakeStoreProductDto fakeStoreProductDto = fakeStoreClient.updateProductById(id,genericProductDto);
         return convertToGenericProductDto(fakeStoreProductDto);
     }
 
