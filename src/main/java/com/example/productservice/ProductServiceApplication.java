@@ -112,22 +112,22 @@ public class ProductServiceApplication implements CommandLineRunner {
 //		 }
 
 
-		Price price	= new Price();
-		price.setCurrency("INR");
-		price.setValue(895985);
-		Price savedPrice = priceRepository.save(price);
-
-		Category category = new Category();
-		category.setName("Samsung");
-		Category savedCategory = categoryRepository.save(category);
-
-		Product product	= new Product();
-		product.setCategory(savedCategory);
-		product.setImage("/url/SamsungUltra.jpg");
-		product.setTitle("Samsung Ultra");
-		product.setPrice(savedPrice);
-		product.setDescription("Samsung Ultra 120");
-		productRepository.save(product);
+//		Price price	= new Price();
+//		price.setCurrency("INR");
+//		price.setValue(895985);
+//		Price savedPrice = priceRepository.save(price);
+//
+//		Category category = new Category();
+//		category.setName("Samsung");
+//		Category savedCategory = categoryRepository.save(category);
+//
+//		Product product	= new Product();
+//		product.setCategory(savedCategory);
+//		product.setImage("/url/SamsungUltra.jpg");
+//		product.setTitle("Samsung Ultra");
+//		product.setPrice(savedPrice);
+//		product.setDescription("Samsung Ultra 120");
+//		productRepository.save(product);
 
 
 
