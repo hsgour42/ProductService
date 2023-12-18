@@ -24,39 +24,39 @@ import java.util.UUID;
 
 //Control + option + O to remove all unnecessary import
 @SpringBootApplication
-public class ProductServiceApplication implements CommandLineRunner {
-	private final MentorRepository mentorRepository;
-	private final   StudentRepository studentRepository;
-	private final UserRepository userRepository;
-	private final CategoryRepository categoryRepository;
-	private final ProductRepository productRepository;
-	private final PriceRepository priceRepository;
-	private final OrderRepository orderRepository;
-
-	@Autowired
-	 public ProductServiceApplication(
-			 @Qualifier("s_mentorRepository") MentorRepository mentorRepository,
-			 @Qualifier("s_studentRepository") StudentRepository studentRepository,
-			 @Qualifier("s_userRepository") UserRepository userRepository,
-
-			 CategoryRepository categoryRepository,
-			 ProductRepository productRepository,
-			 PriceRepository priceRepository,
-			 OrderRepository orderRepository){
-		this.mentorRepository = mentorRepository;
-		this.studentRepository = studentRepository;
-		this.userRepository = userRepository;
-		this.categoryRepository = categoryRepository;
-		this.productRepository = productRepository;
-		this.priceRepository = priceRepository;
-		this.orderRepository = orderRepository;
-	}
+public class ProductServiceApplication  {
+//	private final MentorRepository mentorRepository;
+//	private final   StudentRepository studentRepository;
+//	private final UserRepository userRepository;
+//	private final CategoryRepository categoryRepository;
+//	private final ProductRepository productRepository;
+//	private final PriceRepository priceRepository;
+//	private final OrderRepository orderRepository;
+//
+//	@Autowired
+//	 public ProductServiceApplication(
+//			 @Qualifier("s_mentorRepository") MentorRepository mentorRepository,
+//			 @Qualifier("s_studentRepository") StudentRepository studentRepository,
+//			 @Qualifier("s_userRepository") UserRepository userRepository,
+//
+//			 CategoryRepository categoryRepository,
+//			 ProductRepository productRepository,
+//			 PriceRepository priceRepository,
+//			 OrderRepository orderRepository){
+//		this.mentorRepository = mentorRepository;
+//		this.studentRepository = studentRepository;
+//		this.userRepository = userRepository;
+//		this.categoryRepository = categoryRepository;
+//		this.productRepository = productRepository;
+//		this.priceRepository = priceRepository;
+//		this.orderRepository = orderRepository;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 	}
-	@Override
-	public void run(String... args) throws Exception {
+//	@Override
+//	public void run(String... args) throws Exception {
 		//Inheritance
 //		Mentor mentor = new Mentor();
 //		mentor.setName("harsh");
@@ -133,5 +133,5 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 
 
-	}
+//	}
 }

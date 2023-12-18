@@ -5,6 +5,7 @@ import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Primary  //Default set for service if more then one bean is available as well as @Qualifier override the @Primary
-@Service("fakeStoreProductServiceImpl") //define the name for further use like use in controller
+@Service() //define the name for further use like use in controller
+@Qualifier("fakeStoreProductServiceImpl")
 public class FakeStoreProductServiceImpl implements ProductService{
 
     private final FakeStoreClient fakeStoreClient;

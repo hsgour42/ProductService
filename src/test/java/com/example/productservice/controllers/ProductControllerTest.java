@@ -8,15 +8,18 @@ import jakarta.inject.Named;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@SpringBootTest     //this will run and initiate all dependency every time where as @WebMvcTest initiate required dependency only
 public class ProductControllerTest {
 
     @Inject
@@ -24,8 +27,11 @@ public class ProductControllerTest {
 
 
     @MockBean
-    @Qualifier("selfProductServiceImpl")
+    @Qualifier("fakeStoreProductServiceImpl")
     private ProductService productService;
+
+    @Captor
+    private ArgumentCaptor<Long> argumentCaptor;
 
 
 
@@ -37,8 +43,10 @@ public class ProductControllerTest {
     }
 
     @Test
-    void testGetProductByIdNegativeTC()  {
-        Assertions.assertThrows(ProductNotFoundException.class , () -> productController.getProductById(1000L));
+    void testGetProductByIdNegativeTC() throws ProductNotFoundException {
+        when(productService.getProductById(1000L))
+                .thenThrow(ProductNotFoundException.class);
+        Assertions.assertThrows(ProductNotFoundException.class , () -> productController.getProductById(1000));
         //(expectation , runMethod() with lambda expression)
     }
 
@@ -63,6 +71,17 @@ public class ProductControllerTest {
                 .thenThrow(ProductNotFoundException.class);
 
         Assertions.assertThrows(ProductNotFoundException.class , () -> productController.getProductById(1L));
+    }
+
+    @Test
+    @DisplayName("Test Product Controller Calls Product Service With Same ProductId As Input")
+    void testIfSameInput() throws ProductNotFoundException {
+        long id = 100L;
+
+        productController.getProductById(id);
+
+        verify(productService).getProductById(argumentCaptor.capture());
+        Assertions.assertEquals(id, argumentCaptor.getValue());
     }
 
 }
