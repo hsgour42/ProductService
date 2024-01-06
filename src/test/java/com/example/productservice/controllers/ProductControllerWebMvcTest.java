@@ -71,7 +71,7 @@ public class ProductControllerWebMvcTest {
         productDto.setPrice(new Price("INR" , 2000));
         GenericProductDto outputProductDto = new GenericProductDto();
         outputProductDto.setCategory(productDto.getCategory());
-        outputProductDto.setId(UUID.randomUUID());
+        outputProductDto.setId(1);
         outputProductDto.setDescription(productDto.getDescription());
         outputProductDto.setImage(productDto.getImage());
         outputProductDto.setPrice(productDto.getPrice());

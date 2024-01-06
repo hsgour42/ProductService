@@ -8,9 +8,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Price extends BaseModel{
     private String currency;
     private double value;

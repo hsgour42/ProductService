@@ -3,12 +3,15 @@ package com.example.productservice.controllers;
 
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
+import com.example.productservice.security.JWTObject;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController //this is not simple controller rather this is had rest api
 @RequestMapping("/products")  //all api go through this path {common root}
@@ -23,9 +26,10 @@ public class ProductController {
     }
 
     //localhost:8080/products/123
+    //@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
-
+    public GenericProductDto getProductById( @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,@PathVariable("id") long id) throws ProductNotFoundException {
+        System.out.println(authToken);
         return productService.getProductById(id);
     }
 

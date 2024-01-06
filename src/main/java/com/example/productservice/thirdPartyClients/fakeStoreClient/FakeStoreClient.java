@@ -4,6 +4,7 @@ import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import lombok.Setter;
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -43,6 +44,7 @@ public class FakeStoreClient {
         ResponseEntity<FakeStoreProductDto> responseEntity =
                 template.getForEntity(specificProductUrl, FakeStoreProductDto.class, id);
 
+        System.out.println("Himanshu");
         FakeStoreProductDto fakeStoreProductDto = responseEntity.getBody();
 
         if(fakeStoreProductDto == null){

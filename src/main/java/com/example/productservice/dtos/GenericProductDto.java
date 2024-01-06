@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GenericProductDto {
-    private UUID id;
+    private long id;
     private String title;
     private Price price;
     private Category category;

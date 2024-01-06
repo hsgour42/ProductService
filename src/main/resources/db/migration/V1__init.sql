@@ -1,6 +1,6 @@
 CREATE TABLE category
 (
-    id   BINARY(16) NOT NULL,
+    id   BIGINT       NOT NULL,
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk_category PRIMARY KEY (id)
 );
@@ -63,13 +63,13 @@ CREATE TABLE ms_ta
 
 CREATE TABLE orders
 (
-    id BINARY(16) NOT NULL,
+    id BIGINT NOT NULL,
     CONSTRAINT pk_orders PRIMARY KEY (id)
 );
 
 CREATE TABLE price
 (
-    id       BINARY(16) NOT NULL,
+    id       BIGINT NOT NULL,
     currency VARCHAR(255) NULL,
     value DOUBLE NOT NULL,
     CONSTRAINT pk_price PRIMARY KEY (id)
@@ -77,20 +77,27 @@ CREATE TABLE price
 
 CREATE TABLE product
 (
-    id              BINARY(16) NOT NULL,
+    id              BIGINT NOT NULL,
     title           VARCHAR(255) NULL,
     `description`   VARCHAR(255) NULL,
     image           VARCHAR(255) NULL,
-    inventory_count INT NOT NULL,
-    category_id     BINARY(16) NOT NULL,
-    price_id        BINARY(16) NOT NULL,
+    inventory_count INT    NOT NULL,
+    category_id     BIGINT NOT NULL,
+    price_id        BIGINT NOT NULL,
     CONSTRAINT pk_product PRIMARY KEY (id)
 );
 
 CREATE TABLE products_orders
 (
-    orders_id   BINARY(16) NOT NULL,
-    products_id BINARY(16) NOT NULL
+    orders_id   BIGINT NOT NULL,
+    products_id BIGINT NOT NULL
+);
+
+CREATE TABLE `role`
+(
+    id     BINARY(16) NOT NULL,
+    `role` VARCHAR(255) NULL,
+    CONSTRAINT pk_role PRIMARY KEY (id)
 );
 
 CREATE TABLE s_user
@@ -107,8 +114,9 @@ CREATE TABLE s_user
 
 CREATE TABLE some_model
 (
-    id   BINARY(16) NOT NULL,
-    name VARCHAR(255) NULL,
+    id            BIGINT NOT NULL,
+    name          VARCHAR(255) NULL,
+    `description` VARCHAR(255) NULL,
     CONSTRAINT pk_somemodel PRIMARY KEY (id)
 );
 

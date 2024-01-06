@@ -10,10 +10,10 @@ import java.util.UUID;
 @Getter
 @Setter
 public class FakeStoreProductDto {
-    private UUID id;
+    private long id;
     private String title;
-    private Price price;
-    private Category category;
+    private double price;
+    private String category;
     private String description;
     private String image;
 }
