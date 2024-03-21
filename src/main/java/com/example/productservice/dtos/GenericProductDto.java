@@ -2,6 +2,7 @@ package com.example.productservice.dtos;
 
 import com.example.productservice.models.Category;
 import com.example.productservice.models.Price;
+import com.example.productservice.models.Product;
 import lombok.*;
 
 import java.util.UUID;

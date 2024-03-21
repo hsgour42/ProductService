@@ -1,5 +1,6 @@
 package com.example.productservice.models;
 
+import com.example.productservice.dtos.GenericProductDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,19 @@ public class Product extends BaseModel{
     @OneToOne(optional = false ,cascade = {CascadeType.REMOVE}) // auto delete the reference object
     @JoinColumn(nullable = false)
     private Price price;
+
+
+    public GenericProductDto from(Product product){
+        GenericProductDto genericProductDto = new GenericProductDto();
+
+
+        genericProductDto.setTitle(product.getTitle());
+        //genericProductDto.setPrice(product.getPrice());
+        //genericProductDto.setCategory(product.getCategory());
+        genericProductDto.setDescription(product.getDescription());
+        genericProductDto.setImage(product.getImage());
+        return genericProductDto;
+    }
 
 
 }

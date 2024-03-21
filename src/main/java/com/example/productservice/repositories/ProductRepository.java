@@ -1,6 +1,8 @@
 package com.example.productservice.repositories;
 
 import com.example.productservice.models.Product;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,4 +16,7 @@ public interface ProductRepository extends JpaRepository<Product , UUID> {
 
     @Query(value = "select * from product" , nativeQuery = true)
     List<Product> findAll();
+
+    List<Product> findAllByTitle(String title);
+    List<Product> findAllByTitleContainingIgnoreCase(String title , Pageable pageable);
 }

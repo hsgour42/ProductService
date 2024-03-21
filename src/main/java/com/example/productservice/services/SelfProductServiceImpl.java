@@ -35,8 +35,8 @@ public class SelfProductServiceImpl implements ProductService {
                 .description(product.getDescription())
                 .image(product.getImage())
                 .title(product.getTitle())
-                .price(product.getPrice())
-                .category(product.getCategory())
+                //.price(product.getPrice())
+                //.category(product.getCategory())
                 .build();
     }
 

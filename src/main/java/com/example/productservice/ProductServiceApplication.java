@@ -24,8 +24,11 @@ import java.util.UUID;
 
 //Control + option + O to remove all unnecessary import
 @SpringBootApplication
-public class ProductServiceApplication  {
-//	private final MentorRepository mentorRepository;
+//implements  CommandLineRunner
+public class ProductServiceApplication {
+
+
+//		private final MentorRepository mentorRepository;
 //	private final   StudentRepository studentRepository;
 //	private final UserRepository userRepository;
 //	private final CategoryRepository categoryRepository;
@@ -83,55 +86,57 @@ public class ProductServiceApplication  {
 //		 }
 
 		//Relationship
-//		Category category = new Category();
-//		category.setName("Apple");
+//		Category appleCategory = new Category();
+//		appleCategory.setName("Apple");
+//		Category savedAppleCategory = categoryRepository.save(appleCategory);
 //
-//		Category category1 = categoryRepository.save(category);
-
-//		Optional<Category> category1 = categoryRepository.findById(UUID.fromString("70b1b2c9-47de-43ab-8e0c-e2f145852fe3"));
+//		Price apple15Price= new Price();
+//		apple15Price.setCurrency("INR");
+//		apple15Price.setValue(73000);
+//		Price savedApplePrice = priceRepository.save(apple15Price);
+//
+//		Product apple15Product= new Product();
+//		apple15Product.setCategory(appleCategory);
+//		apple15Product.setImage("/url/iphone15promax.jpg");
+//		apple15Product.setTitle("Iphone");
+//		apple15Product.setPrice(savedApplePrice);
+//		apple15Product.setDescription("Iphone 15 pro max");
+//		productRepository.save(apple15Product);
 //
 //
-//		Product product	= new Product();
-//		product.setCategory(category1.get());
-//		product.setImage("/url/iphone15promax.jpg");
-//		product.setTitle("Iphone");
-//		product.setPrice(800000);
-//		product.setDescription("Iphone 15 pro max");
+//		Price apple14Price= new Price();
+//		apple14Price.setCurrency("INR");
+//		apple14Price.setValue(53000);
+//		Price savedApple14Price = priceRepository.save(apple14Price);
 //
-//		productRepository.save(product);
-
-//		 Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("70b1b2c9-47de-43ab-8e0c-e2f145852fe3"));
-//		 if(optionalCategory.isEmpty()){
-//			 throw new Exception("Category not available");
-//		 }
+//		Product apple14Product= new Product();
+//		apple14Product.setCategory(savedAppleCategory);
+//		apple14Product.setImage("/url/iphone14pro.jpg");
+//		apple14Product.setTitle("Iphone");
+//		apple14Product.setPrice(savedApple14Price);
+//		apple14Product.setDescription("Iphone 14 pro");
+//		productRepository.save(apple14Product);
 //
-//		 Category category	= optionalCategory.get();
 //
-//	 	List<Product> productList = category.getProducts();
 //
-//		 for(Product product : productList){
-//			 System.out.println(product.getDescription());
-//		 }
-
-
-//		Price price	= new Price();
-//		price.setCurrency("INR");
-//		price.setValue(895985);
-//		Price savedPrice = priceRepository.save(price);
+//		Price sumsungPrice= new Price();
+//		sumsungPrice.setCurrency("INR");
+//		sumsungPrice.setValue(102000);
+//		Price savedSumsungPrice = priceRepository.save(sumsungPrice);
 //
-//		Category category = new Category();
-//		category.setName("Samsung");
-//		Category savedCategory = categoryRepository.save(category);
+//		Category samsungCategory = new Category();
+//		samsungCategory.setName("Samsung");
+//		Category savedSamsungCategory = categoryRepository.save(samsungCategory);
 //
-//		Product product	= new Product();
-//		product.setCategory(savedCategory);
-//		product.setImage("/url/SamsungUltra.jpg");
-//		product.setTitle("Samsung Ultra");
-//		product.setPrice(savedPrice);
-//		product.setDescription("Samsung Ultra 120");
-//		productRepository.save(product);
-
-
-
+//		Product sumsungS23UltraProduct	= new Product();
+//		sumsungS23UltraProduct.setCategory(savedSamsungCategory);
+//		sumsungS23UltraProduct.setImage("/url/SamsungUltra.jpg");
+//		sumsungS23UltraProduct.setTitle("Samsung Ultra");
+//		sumsungS23UltraProduct.setPrice(savedSumsungPrice);
+//		sumsungS23UltraProduct.setDescription("Samsung Ultra 120");
+//		productRepository.save(sumsungS23UltraProduct);
+//
+//
+//
 //	}
 }

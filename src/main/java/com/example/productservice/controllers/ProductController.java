@@ -28,8 +28,8 @@ public class ProductController {
     //localhost:8080/products/123
     //@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,
     @GetMapping("/{id}")
-    public GenericProductDto getProductById( @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,@PathVariable("id") long id) throws ProductNotFoundException {
-        System.out.println(authToken);
+    public GenericProductDto getProductById( @PathVariable("id") long id) throws ProductNotFoundException {
+        //System.out.println(authToken);
         return productService.getProductById(id);
     }
 

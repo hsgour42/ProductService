@@ -8,7 +8,6 @@ import java.util.UUID;
 
 @MappedSuperclass
 public class BaseModel {
-//    @Id
 //    @GeneratedValue(generator = "uuid_generator")
 //    @GenericGenerator(name = "uuid_generator",strategy = "uuid2")
 //    @Column(name = "id",columnDefinition = "binary(16)",nullable = false,updatable = false)

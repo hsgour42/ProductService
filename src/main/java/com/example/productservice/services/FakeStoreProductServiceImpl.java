@@ -88,11 +88,11 @@ public class FakeStoreProductServiceImpl implements ProductService{
         Category category = new Category();
         category.setName(fakeStoreProductDto.getCategory());
 
-        genericProductDto.setCategory(category);
+       // genericProductDto.setCategory(category);
         genericProductDto.setId(fakeStoreProductDto.getId());
         genericProductDto.setDescription(fakeStoreProductDto.getDescription());
         genericProductDto.setTitle(fakeStoreProductDto.getTitle());
-        genericProductDto.setPrice(price);
+     //   genericProductDto.setPrice(price);
         genericProductDto.setImage(fakeStoreProductDto.getImage());
         return genericProductDto;
     }
