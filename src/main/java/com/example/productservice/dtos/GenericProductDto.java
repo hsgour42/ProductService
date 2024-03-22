@@ -19,4 +19,17 @@ public class GenericProductDto {
     private Category category;
     private String description;
     private String image;
+
+
+    public static GenericProductDto from(Product product) {
+        GenericProductDto genericProductDto = new GenericProductDto();
+        genericProductDto.setTitle(product.getTitle());
+        genericProductDto.setDescription(product.getDescription());
+        //genericProductDto.setPrice(product.getPrice());
+        genericProductDto.setImage(product.getImage());
+        //genericProductDto.setId(product.getId());
+
+        return genericProductDto;
+    }
 }
+

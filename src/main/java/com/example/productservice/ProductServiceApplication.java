@@ -23,7 +23,8 @@ import java.util.UUID;
 //Flaky Test Case : Something it may pass sometime it may fail  //Random
 
 //Control + option + O to remove all unnecessary import
-@SpringBootApplication
+
+@SpringBootApplication()
 //implements  CommandLineRunner
 public class ProductServiceApplication {
 

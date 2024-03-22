@@ -4,11 +4,13 @@ import com.example.productservice.dtos.GenericProductDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
+
 
 @Getter
 @Setter
 @Entity
+
+//@Document(indexName = "product")    //for elastic search
 public class Product extends BaseModel{
     private String title;
     private String description;
@@ -25,17 +27,7 @@ public class Product extends BaseModel{
     private Price price;
 
 
-    public GenericProductDto from(Product product){
-        GenericProductDto genericProductDto = new GenericProductDto();
 
-
-        genericProductDto.setTitle(product.getTitle());
-        //genericProductDto.setPrice(product.getPrice());
-        //genericProductDto.setCategory(product.getCategory());
-        genericProductDto.setDescription(product.getDescription());
-        genericProductDto.setImage(product.getImage());
-        return genericProductDto;
-    }
 
 
 }

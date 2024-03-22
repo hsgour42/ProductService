@@ -5,11 +5,12 @@ import com.example.productservice.models.Price;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
 @Setter
-public class FakeStoreProductDto {
+public class FakeStoreProductDto implements Serializable {
     private long id;
     private String title;
     private double price;

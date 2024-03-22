@@ -3,6 +3,7 @@ package com.example.productservice.services;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
+import com.example.productservice.repositories.OpenSearchProductRepository;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,13 @@ public class SelfProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    SelfProductServiceImpl(ProductRepository productRepository){
+
+    SelfProductServiceImpl(
+            ProductRepository productRepository
+
+    ){
         this.productRepository = productRepository;
+
     }
 
     @Override
@@ -52,7 +58,16 @@ public class SelfProductServiceImpl implements ProductService {
 
     @Override
     public GenericProductDto createProduct(GenericProductDto genericProductDto) {
-        return null;
+        Product product = new Product();
+        product.setTitle(genericProductDto.getTitle());
+        product.setDescription(genericProductDto.getDescription());
+        product.setCategory(genericProductDto.getCategory());
+        product.setImage(genericProductDto.getImage());
+        product.setPrice(genericProductDto.getPrice());
+
+        Product savedProduct = productRepository.save(product);
+
+        return GenericProductDto.from(savedProduct);
     }
 
     @Override

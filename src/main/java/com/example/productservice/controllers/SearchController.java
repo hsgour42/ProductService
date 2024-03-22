@@ -33,15 +33,19 @@ public class SearchController {
     }
 
 //    @PostMapping
-//    public Page<GenericProductDto> searchProducts(@RequestBody SearchRequestDto searchRequestDto){
-//        List<GenericProductDto>  genericProductDtoList = searchService.searchProducts(
-//                searchRequestDto.getQuery() ,
-//                searchRequestDto.getPageNumber(),
-//                searchRequestDto.getItemsPerPage()
+//    public Page<GenericProductDto> searchProducts(@RequestBody SearchRequestDto requestDto) {
+//        List<GenericProductDto> genericProductDtos = searchService.searchProducts(requestDto.getQuery(),
+//                requestDto.getPageNumber(),
+//                requestDto.getItemsPerPage(),
+//                requestDto.getSortParam());
+//
+//        Page<GenericProductDto> genericProductDtoPage = new PageImpl<>(
+//                genericProductDtos
 //        );
 //
-//        Page<GenericProductDto> genericProductDtoPage = new PageImpl<>(genericProductDtoList);
 //        return genericProductDtoPage;
 //    }
+
+
 
 }

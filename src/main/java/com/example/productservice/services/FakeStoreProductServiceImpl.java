@@ -10,12 +10,11 @@ import com.example.productservice.security.TokenValidator;
 import com.example.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 //@Primary  //Default set for service if more then one bean is available as well as @Qualifier override the @Primary
 @Service() //define the name for further use like use in controller
@@ -25,10 +24,15 @@ public class FakeStoreProductServiceImpl implements ProductService{
     private final FakeStoreClient fakeStoreClient;
     private final TokenValidator tokenValidator;
 
+    //Redis
+    private HashOperations hashOperations;
+
     @Autowired
-    FakeStoreProductServiceImpl(FakeStoreClient fakeStoreClient, TokenValidator tokenValidator){
+    FakeStoreProductServiceImpl(FakeStoreClient fakeStoreClient, TokenValidator tokenValidator,RedisTemplate redisTemplate){
         this.fakeStoreClient = fakeStoreClient;
         this.tokenValidator = tokenValidator;
+        this.hashOperations = redisTemplate.opsForHash();
+
     }
 
     @Override
@@ -49,7 +53,13 @@ public class FakeStoreProductServiceImpl implements ProductService{
          //Check conditions or set some rules here
 
 
-        FakeStoreProductDto fakeStoreProductDto = fakeStoreClient.getProductById(id);
+        FakeStoreProductDto fakeStoreProductDto = null;
+        fakeStoreProductDto = (FakeStoreProductDto) hashOperations.get("Product",id);
+
+        if(fakeStoreProductDto == null){
+            fakeStoreProductDto = fakeStoreClient.getProductById(id);
+            hashOperations.put("Product",id,fakeStoreProductDto);
+        }
         return convertToGenericProductDto(fakeStoreProductDto);
     }
 
